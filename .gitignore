@@ -77,3 +77,14 @@ secrets.js
 .secrets.py
 .passwords.py
 .secrets.js
+
+# GCP credentials
+key.json
+*.json
+
+# Cache directory
+cache/
+
+# Environment files with secrets
+*.env
+!*.env.example
