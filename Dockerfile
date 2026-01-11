@@ -11,13 +11,12 @@ ENV LANGUAGE en_US.UTF-8
 ENV WINEPREFIX /root/.wine
 ENV DISPLAY :0
 
-ENV IQFEED_INSTALLER_BIN="iqfeed_client_6_2_0_25.exe"
+ENV IQFEED_INSTALLER_BIN="iqfeed_client_6_2_2_1.exe"
 ENV IQFEED_LOG_LEVEL 0xB222
 
 ENV WINEDEBUG -all
 
 RUN \
-    dpkg --add-architecture i386 && \
     apt-get update && apt-get upgrade -yq && \
     apt-get install -yq --no-install-recommends \
         software-properties-common apt-utils supervisor xvfb wget tar gpg-agent bbe netcat-openbsd net-tools && \
@@ -32,6 +31,7 @@ RUN \
 
 RUN \
     # Install winehq-stable    
+    dpkg --add-architecture i386 && \
     mkdir -pm755 /etc/apt/keyrings && \
     wget -O - https://dl.winehq.org/wine-builds/winehq.key | gpg --dearmor -o /etc/apt/keyrings/winehq-archive.key - && \
     wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/noble/winehq-noble.sources && \
